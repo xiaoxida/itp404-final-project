@@ -3,6 +3,17 @@
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
+## Project Details
+Title: Online Flea Market
+
+Audience: USC students
+
+Description:
+The website will have index, item_datail, create your item, your favourite items list route.
+The website will allow user to create, edit, delete items they want to sell, and add their favourite items to its list.
+They can contact the seller via phone or email.
+I will use ember-moment to format the date and some log in functionality.
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
