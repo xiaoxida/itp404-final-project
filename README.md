@@ -10,9 +10,9 @@ Audience: USC students
 
 Description:
 The website will have index, item_datail, create your item, your favourite items list route.
-The website will allow user to create, edit, delete items they want to sell, and add their favourite items to its list.
+The website will allow user to create, edit, delete items they want to sell, and add their favourite items to their list.
 They can contact the seller via phone or email.
-I will use ember-moment to format the date and some log in functionality.
+I will use ember-moment to format the date and some log in functionality like facebook.
 
 ## Prerequisites
 
