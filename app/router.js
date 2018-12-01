@@ -7,6 +7,12 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('upcoming');
+  this.route('anytime');
+  this.route('logbook');
+  this.route('trash');
+  this.route('detail');
+  this.route('task', { path: '/task/:id' });
 });
 
 export default Router;
