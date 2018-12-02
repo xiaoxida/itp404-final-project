@@ -1,0 +1,44 @@
+<div class="form">
+  {{#bs-form model=this as |form|}}
+    {{form.element
+      controlType="text"
+      label="Name:"
+      placeholder="Name"
+      property="name"
+    }}
+    <CharactersRemaining class="my-class" @text={{name}} @max={{10}} />
+    {{form.element
+      controlType="textarea"
+      label="Notes:"
+      placeholder="Notes"
+      property="notes"
+    }}
+    {{bs-button
+      defaultText="Submit"
+      rejectedText="Submitting"
+      type="primary"
+      buttonType="submit"
+      onClick=(action "createTask")
+    }}
+    {{bs-button
+      defaultText="Cancel"
+      type="success"
+      onClick=(action "cancel")
+    }}
+  {{/bs-form}}
+</div>
+
+<form onsubmit={{action "createTask"}} hidden>
+  <div>
+    <label for="name">Name</label>
+    {{input type="text" id="name" value=name}}
+  </div>
+  <div>
+    <label for="notes">Notes</label>
+    {{textarea id="notes" rows="8" cols="80" value=notes}}
+  </div>
+
+  <button type="submit" data-test="publish">Publish</button>
+</form>
+
+{{outlet}}

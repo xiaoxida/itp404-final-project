@@ -1,0 +1,10 @@
+{{#if hasBlock}}
+  {{yield remaining}}
+{{else}}
+  {{#if isEmpty}}
+    Name cannot be empty
+  {{/if}}
+  {{#if isTooLong}}
+    Name cannot exceed 20
+  {{/if}}
+{{/if}}

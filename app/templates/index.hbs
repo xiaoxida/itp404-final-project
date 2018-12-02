@@ -1,4 +1,11 @@
-{{#bs-navbar type="dark" backgroundColor="dark" collapsed=collapsed onCollapse=(action (mut collapsed) true) onExpand=(action (mut collapsed) false) as |navbar|}}
+{{#bs-navbar
+  type="dark"
+  backgroundColor="dark"
+  collapsed=collapsed
+  onCollapse=(action (mut collapsed) true)
+  onExpand=(action (mut collapsed) false)
+as |navbar|
+}}
   <div class="navbar-header">
     {{navbar.toggle}}
     {{#link-to "index" class="navbar-brand"}}Things to Do{{/link-to}}
@@ -6,39 +13,41 @@
   {{#navbar.content}}
     {{#navbar.nav as |nav|}}
       {{#nav.item}}{{#nav.link-to "index"}}Today{{/nav.link-to}}{{/nav.item}}
-      {{#nav.item}}{{#nav.link-to "upcoming"}}Upcoming{{/nav.link-to}}{{/nav.item}}
-      {{#nav.item}}{{#nav.link-to "anytime"}}Anytime{{/nav.link-to}}{{/nav.item}}
       {{#nav.item}}{{#nav.link-to "logbook"}}Logbook{{/nav.link-to}}{{/nav.item}}
-      {{#nav.item}}{{#nav.link-to "trash"}}Trash{{/nav.link-to}}{{/nav.item}}
-    {{/navbar.nav}}
-  {{/navbar.content}}
+      {{#nav.item}}{{#nav.link-to "compose"}}New{{/nav.link-to}}{{/nav.item}}
+      {{/navbar.nav}}
+    {{/navbar.content}}
 {{/bs-navbar}}
 
-<div style="width: 50%; float: left;">
+<div class="left">
   {{#bs-accordion as |acc|}}
     {{#each model as |task|}}
-      {{#acc.item value=task.id title=task.name}}
-        <p>
-          Notes: {{task.notes}}
-        </p>
-        <p>
-          Time: {{task.time}}
-        </p>
-      {{#bs-button type="info"}}Edit{{/bs-button}}
-      <div style="float: right; margin-bottom: 10px;">
-        {{#bs-button type="success"}}Done{{/bs-button}}
-        {{#bs-button type="danger"}}Delete{{/bs-button}}
-      </div>
-      <!-- <button type="button" name="Delete" style="float: right; margin-bottom: 10px; border-radius: 8px; color: white; background-color: #f44336; padding: 6px;">Done</button> -->
-      <!-- <button type="button" name="Delete" style="float: right; margin-bottom: 10px; border-radius: 8px; color: white; background-color: #f44336; padding: 6px;">Delete</button> -->
-      {{/acc.item}}
+      {{#unless task.done}}
+        {{#acc.item value=task.id title=task.name}}
+          <p hidden data-test="name">
+            {{task.name}}
+          </p>
+          <p hidden data-test="notes">
+            {{task.notes}}
+          </p>
+          <p data-test="task">
+            Notes: {{truncate-text task.notes 50}}
+          </p>
+          {{#link-to "edit" task.id}}{{#bs-button type="info"}}Edit{{/bs-button}}{{/link-to}}
+          <div class="main_buttons">
+            {{#bs-button onClick=(action "done" task) type="success"}}Done{{/bs-button}}
+            {{#bs-button onClick=(action "deleteTask" task) type="danger"}}Delete{{/bs-button}}
+            <button hidden data-test="delete-task" onclick={{action "deleteTask" task}}>Done</button>
+          </div>
+        {{/acc.item}}
+      {{/unless}}
     {{/each}}
   {{/bs-accordion}}
 </div>
-<div style="width: 50%; float: right">
-  <div style="font-size: 50pt; width: 1200px; margin: auto; padding: 500px 0; text-align: center;">
+<div class="right">
+  <div class="remainingText">
     <p>
-      You Have 6 Tasks remaining for today!
+      You have {{TaskNotDone.length}} Tasks remaining for today!
     </p>
     <p>
       Time remaining for today:

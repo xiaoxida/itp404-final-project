@@ -1,0 +1,26 @@
+.form{
+  width: 600px;
+  margin: auto;
+}
+.error {
+  color: red;
+}
+.left{
+  width: 50%;
+  float: left;
+}
+.right{
+  width: 50%;
+  float: right;
+}
+.main_buttons{
+  float: right;
+  margin-bottom: 10px;
+}
+.remainingText{
+  font-size: 50pt;
+  width: 1200px;
+  margin: auto;
+  padding: 500px 0;
+  text-align: center;
+}

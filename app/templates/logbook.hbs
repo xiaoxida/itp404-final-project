@@ -1,1 +1,48 @@
+{{#bs-navbar
+  type="dark"
+  backgroundColor="dark"
+  collapsed=collapsed
+  onCollapse=(action (mut collapsed) true)
+  onExpand=(action (mut collapsed) false)
+as |navbar|
+}}
+  <div class="navbar-header">
+    {{navbar.toggle}}
+    {{#link-to "index" class="navbar-brand"}}Things to Do{{/link-to}}
+  </div>
+  {{#navbar.content}}
+    {{#navbar.nav as |nav|}}
+      {{#nav.item}}{{#nav.link-to "index"}}Today{{/nav.link-to}}{{/nav.item}}
+      {{#nav.item}}{{#nav.link-to "logbook"}}Logbook{{/nav.link-to}}{{/nav.item}}
+      {{#nav.item}}{{#nav.link-to "compose"}}New{{/nav.link-to}}{{/nav.item}}
+      {{/navbar.nav}}
+    {{/navbar.content}}
+{{/bs-navbar}}
+
+<div class="left">
+  {{#bs-accordion as |acc|}}
+    {{#each model as |task|}}
+      {{#if task.done}}
+        {{#acc.item value=task.id title=task.name}}
+          <p>
+            Notes: {{truncate-text task.notes 50}}
+          </p>
+        {{/acc.item}}
+      {{/if}}
+    {{/each}}
+  {{/bs-accordion}}
+</div>
+
+<div class="right">
+  <div class="remainingText">
+    <p>
+      You have done {{TaskDone.length}} Tasks today!
+    </p>
+    <p>
+      Time remaining for today:
+    </p>
+    <p id="timeremaining"></p>
+  </div>
+</div>
+
 {{outlet}}

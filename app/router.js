@@ -12,7 +12,9 @@ Router.map(function() {
   this.route('logbook');
   this.route('trash');
   this.route('detail');
-  this.route('task', { path: '/task/:id' });
+  this.route('task', { path: '/tasks/:id' });
+  this.route('compose', { path: '/tasks/new' });
+  this.route('edit', { path: '/tasks/:id/edit' });
 });
 
 export default Router;

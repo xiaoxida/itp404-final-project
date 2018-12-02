@@ -1,13 +1,17 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-  title: 'Things to Do - Today',
-  model() {
-    return this.store.findAll('task');
+  setupController(controller, model) {
+    this._super(controller, model);
+    controller.set('name', model.name);
+    controller.set('notes', model.notes);
+  },
+  model(params) {
+    return this.store.findRecord('task', params.id);
   },
   actions: {
     loading(transition) {
-      let controller = this.controllerFor('index');
+      let controller = this.controllerFor('edit');
       controller.set('currentlyLoading', true);
       transition.promise.finally(function() {
           controller.set('currentlyLoading', false);

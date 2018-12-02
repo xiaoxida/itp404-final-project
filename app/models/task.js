@@ -5,4 +5,5 @@ export default DS.Model.extend({
   notes: DS.attr('string'),
   time: DS.attr('string'),
   deadline: DS.attr('string'),
+  done: DS.attr('boolean', {defaultValue: false}),
 });

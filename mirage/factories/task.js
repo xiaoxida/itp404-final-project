@@ -16,4 +16,7 @@ export default Factory.extend({
   deadline() {
     return faker.date.future();
   },
+  done() {
+    return false;
+  },
 });

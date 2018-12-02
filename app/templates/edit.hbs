@@ -1,0 +1,42 @@
+<div class="form">
+  {{#bs-form model=this onSubmit=(action "editTask" model) as |form|}}
+    {{form.element
+      controlType="text"
+      label="Name:"
+      property="name"
+      value=model.name
+    }}
+    <CharactersRemaining class="my-class" @text={{name}} @max={{10}} />
+    {{form.element
+      controlType="textarea"
+      label="Notes:"
+      property="notes"
+      value=model.notes
+    }}
+    {{bs-button
+      defaultText="Submit"
+      type="primary"
+      buttonType="submit"
+    }}
+    {{bs-button
+      defaultText="Back"
+      type="success"
+      onClick=(action "back")
+    }}
+  {{/bs-form}}
+</div>
+
+<form onsubmit={{action "editTask" model}} hidden>
+  <div>
+    <label id="test-name">{{model.name}}</label>
+    {{input type="text" id="name" value=model.name}}
+  </div>
+  <div>
+    <label id="test-notes">{{model.notes}}</label>
+    {{textarea id="notes" rows="8" cols="80" value=model.notes}}
+  </div>
+
+  <button type="submit" data-test="publish">Publish</button>
+</form>
+
+{{outlet}}
