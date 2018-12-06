@@ -1,7 +1,13 @@
 import Route from '@ember/routing/route';
+import { makeArray } from '@ember/array';
 
 export default Route.extend({
-  title: 'Things to Do - Today',
+  //title: 'Things to Do - Today',
+  title: function(tokens) {
+    tokens = makeArray(tokens);
+    tokens.unshift('Things to Do');
+    return tokens.reverse().join(' - ');
+  },
   model() {
     return this.store.findAll('task');
   },

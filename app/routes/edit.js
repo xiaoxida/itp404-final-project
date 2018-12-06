@@ -1,6 +1,10 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
+  //title: 'Things to Do - Anytime',
+  titleToken: function(model) {
+    return model.get('name');
+  },
   setupController(controller, model) {
     this._super(controller, model);
     controller.set('name', model.name);
